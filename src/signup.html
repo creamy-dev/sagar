@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="commons.scss">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+<html>
+    Username: <input class="selectable" id="username" type="text"><br>
+    Password: <input class="selectable" id="password" type="password"><br> 
+    <button onclick="signup()">Sign Up</button>
+</html>
+
+<script>
+    async function signup() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            await axios.post("/api/v1/createacc", {
+                username: username,
+                password: password
+            });
+
+            window.location.href = "/";
+        } catch (e) {
+            throw(e.data);
+        }
+    }
+</script>

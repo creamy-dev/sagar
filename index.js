@@ -184,7 +184,7 @@ wss.on('connection', async function connection(ws, req) {
             if (connections.includes(data.username)) {
                 ws.send(JSON.stringify({
                     type: "error",
-                    message: "Already connected."
+                    message: "You are being rate limited!"
                 }));
 
                 ws.terminate();
@@ -224,11 +224,6 @@ wss.on('connection', async function connection(ws, req) {
 
         if (dataParsed.type == undefined) {
             ws.send(JSON.stringify({ "type": "error", "message": "Missing data." }));
-        } else if (dataParsed.type === "quit") {
-            ws.send(JSON.stringify({ "message": "Goodbye." }));
-            ws.terminate();
-            disableKeepalive();
-            return;
         } else if (dataParsed.type === "bounce" && dataParsed.message !== undefined) {
             ws.send(JSON.stringify({ "type": "bounce", "message": dataParsed.message }));
         }

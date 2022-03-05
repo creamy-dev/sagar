@@ -52,6 +52,7 @@
             });
 
             localStorage.setItem("token", data.data.token);
+            localStorage.setItem("username", document.getElementById("username").value);
             window.location.href = "/";
         } catch (e) {
             document.getElementById("error").innerHTML = errorResp;

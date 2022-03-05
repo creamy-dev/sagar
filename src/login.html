@@ -11,7 +11,7 @@
 
 <div class="divmagic">
     <li><a href="/">Go Back</a></li>
-    <h4 class="sign0">Sign Up</h4>
+    <h4 class="sign0">Log In</h4>
     <div class="input-field col s6 username">
         <input id="username" type="text" class="validate">
         <label for="username">Username</label>
@@ -20,8 +20,8 @@
         <input id="password" type="password" class="validate">
         <label for="password">Password</label>
     </div>
-    <button onclick="signup()" class="waves-effect waves-light btn loginbutton">Sign Up</button>
-    <button onclick="window.location.replace('login.html')" class="waves-effect waves-light btn altbutton">Go to Log In</button>
+    <button onclick="signup()" class="waves-effect waves-light btn loginbutton">Log In</button>
+    <button onclick="window.location.replace('signup.html')" class="waves-effect waves-light btn altbutton">Go to Sign Up</button>
     <h20 class="selectable" id="error"></h20>
 </div>
 
@@ -43,7 +43,7 @@
         let errorResp = "";
 
         try {
-            data = await axios.post("/api/v1/createacc", {
+            data = await axios.post("/api/v1/loginacc", {
                 username: username,
                 password: password
             }).catch(function (error) {

@@ -1,0 +1,43 @@
+.divmagic {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -140px 0 0 -150px;
+}
+
+.sign0 {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+
+.username {
+    position: absolute;
+    top: 99px;
+    left: 8px;
+    width: 280px;
+}
+
+.password {
+    position: absolute;
+    top: 97px;
+    left: 8px;
+    width: 280px;
+}
+
+.loginbutton {
+    position: absolute;
+    top: 97px;
+    left: 195px;
+    width: 90px;
+}
+
+.altbutton {
+    position: absolute;
+    top: 97px;
+    left: -45px;
+    width: 140px;
+}

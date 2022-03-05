@@ -108,17 +108,14 @@ wss.on('connection', async function connection(ws, req) {
     let data = {};
     let token = req.url.split("/");
 
-    /*
     const interval = setInterval(function ping() {
-        if (ws.isAlive === false) return ws.terminate();
+        if (ws.isAlive === false) return disableKeepalive();
 
-        disableKeepalive();
         ws.ping();
-    }, 100);
-    */
+    }, 10000);
 
     function disableKeepalive() {
-        //clearInterval(interval);
+        clearInterval(interval);
         ws.isAlive = false;
         let localConnections = [];
 

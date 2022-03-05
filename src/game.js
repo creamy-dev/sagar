@@ -29,7 +29,7 @@ async function main() {
                 }
             }
 
-            document.getElementsByClassName("plb_loaderfill")[0].remove()
+            if (document.getElementsByClassName("plb_loaderfill").length !== 0) document.getElementsByClassName("plb_loaderfill")[0].remove();
         }
     }
 

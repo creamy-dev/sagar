@@ -1,7 +1,6 @@
 const express = require('express');
 const Database = require("@creamy-dev/1udb");
 const WebSocket = require('ws');
-const e = require('express');
 
 const Token = require('js-sha512').sha512;
 const credentials = new Database("./cred.json");

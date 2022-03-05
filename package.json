@@ -1,5 +1,5 @@
 {
-    "name": "sagar",
+    "name": "bsh00t",
     "version": "0.1.0",
     "description": "",
     "main": "index.js",
@@ -12,7 +12,6 @@
     "dependencies": {
         "@creamy-dev/1udb": "^1.1.2",
         "express": "^4.17.3",
-        "express-compile-sass": "^4.0.0",
         "js-sha512": "^0.8.0",
         "ws": "^8.5.0"
     }

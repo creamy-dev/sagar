@@ -1,7 +1,7 @@
 const express = require('express');
 const Database = require("@creamy-dev/1udb");
 const WebSocket = require('ws');
-const compileSass = require('express-compile-sass');
+const e = require('express');
 
 const Token = require('js-sha512').sha512;
 const credentials = new Database("./cred.json");
@@ -12,14 +12,6 @@ app.use(express.static("./src/"));
 app.use(express.json());
 
 let connections = [];
-
-app.use(compileSass({
-    root: "./src/",
-    sourceMap: true,
-    sourceComments: true,
-    watchFiles: true,
-    logToConsole: true
-}));
 
 app.post("/api/v1/createacc", async function (req, res) {
     let { username, password } = req.body;
@@ -127,7 +119,7 @@ wss.on('connection', async function connection(ws, req) {
     */
 
     function disableKeepalive() {
-        clearInterval(interval);
+        //clearInterval(interval);
         ws.isAlive = false;
         let localConnections = [];
 
@@ -221,6 +213,25 @@ wss.on('connection', async function connection(ws, req) {
     });
 
     ws.on('message', function message(data) {
-        ws.send(data);
+        let dataParsed = {};
+
+        try {
+            dataParsed = JSON.parse(data);
+        } catch (e) {
+            if (!e instanceof SyntaxError) {
+                console.error(e);
+            }
+        }
+
+        if (dataParsed.type == undefined) {
+            ws.send(JSON.stringify({ "type": "error", "message": "Missing data." }));
+        } else if (dataParsed.type === "quit") {
+            ws.send(JSON.stringify({ "message": "Goodbye." }));
+            ws.terminate();
+            disableKeepalive();
+            return;
+        } else if (dataParsed.type === "bounce" && dataParsed.message !== undefined) {
+            ws.send(JSON.stringify({ "type": "bounce", "message": dataParsed.message }));
+        }
     });
 });
